@@ -1,5 +1,7 @@
 package com.example.busschedule.viewmodels
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.busschedule.database.schedule.Schedule
@@ -11,6 +13,13 @@ class BusScheduleViewModel(private val scheduleDao: ScheduleDao): ViewModel() {
     fun fullSchedule(): Flow<List<Schedule>> = scheduleDao.getAll()
 
     fun scheduleForStopName(name: String): Flow<List<Schedule>> = scheduleDao.getByStopName(name)
+
+    private val _schedule = MutableLiveData<Schedule>()
+    val schedule: LiveData<Schedule> = _schedule
+
+    fun onScheduleClicked(schedule: Schedule) {
+        _schedule.value = schedule
+    }
 }
 
 class BusScheduleViewModelFactory(
