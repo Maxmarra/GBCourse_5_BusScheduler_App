@@ -52,8 +52,9 @@ class BusStopAdapter(
         @SuppressLint("SimpleDateFormat")
         fun bind(schedule: Schedule) {
             binding.stopNameTextView.text = schedule.stopName
-            binding.arrivalTimeTextView.text = SimpleDateFormat(
-                "h:mm a").format(Date(schedule.arrivalTime.toLong() * 1000)
+            binding.arrivalTimeTextView.text =
+                SimpleDateFormat("h:mm a")
+                    .format(Date(schedule.arrivalTime.toLong() * 1000)
             )
         }
     }
