@@ -39,10 +39,11 @@ class BusStopAdapter(
     }
 
     override fun onBindViewHolder(holder: BusStopViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val current = getItem(position)
         holder.itemView.setOnClickListener {
-            onItemClicked(getItem(position))
+            onItemClicked(current)
         }
+        holder.bind(current)
     }
 
     companion object {

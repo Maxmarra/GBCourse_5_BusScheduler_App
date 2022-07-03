@@ -46,7 +46,7 @@ class FullScheduleFragment: Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val busStopAdapter = BusStopAdapter {
-            viewModel.onScheduleClicked(it)
+            viewModel.onScheduleClicked(it.stopName)
 
             view.findNavController().navigate(R.id.action_fullScheduleFragment_to_stopScheduleFragment)
         }

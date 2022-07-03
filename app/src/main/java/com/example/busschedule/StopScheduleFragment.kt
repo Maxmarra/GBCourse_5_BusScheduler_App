@@ -18,9 +18,7 @@ import kotlinx.coroutines.launch
 class StopScheduleFragment: Fragment() {
 
     private var _binding: StopScheduleFragmentBinding? = null
-
     private val binding get() = _binding!!
-
     private lateinit var recyclerView: RecyclerView
 
     private val viewModel: BusScheduleViewModel by activityViewModels {
