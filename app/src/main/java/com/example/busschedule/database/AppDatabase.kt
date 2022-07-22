@@ -12,7 +12,7 @@ import com.example.busschedule.database.schedule.ScheduleDao
  * Version is incremented as new tables/columns are added/removed/changed.
  * You can optionally use this class for one-time setup, such as pre-populating a database.
  */
-@Database(entities = arrayOf(Schedule::class), version = 1)
+@Database(entities = arrayOf(Schedule::class), version = 2)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun scheduleDao(): ScheduleDao
 
