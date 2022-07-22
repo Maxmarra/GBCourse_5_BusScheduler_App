@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.busschedule.databinding.StopScheduleFragmentBinding
 import com.example.busschedule.viewmodels.BusScheduleViewModel
 import com.example.busschedule.viewmodels.BusScheduleViewModelFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class StopScheduleFragment: Fragment() {
@@ -29,6 +27,7 @@ class StopScheduleFragment: Fragment() {
     }
 
     private var _binding: StopScheduleFragmentBinding? = null
+
     private val binding get() = _binding!!
 
     private lateinit var recyclerView: RecyclerView
@@ -55,13 +54,12 @@ class StopScheduleFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        val busStopAdapter = BusStopAdapter {}
+        val busStopAdapter = BusStopAdapter({})
+        // by passing in the stop name, filtered results are returned,
+        // and tapping rows won't trigger navigation
         recyclerView.adapter = busStopAdapter
-
         lifecycle.coroutineScope.launch {
             viewModel.scheduleForStopName(stopName).collect() {
                 busStopAdapter.submitList(it)
